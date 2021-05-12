@@ -1,0 +1,20 @@
+kind: Pod 
+apiVersion: v1
+metadata:
+  name: init-pod1
+  labels:
+    role: loginms
+spec:
+  initContainers:
+    - name: init1
+      image: alpine
+      command: ["sh", "-c", "sleep 30"]
+    - name: init2
+      image: ubuntu
+      command: ["sh", "-c", "slep 40"]
+  containers:
+    - name: cont1
+      image: lerndevops/nginx:app1
+      ports:
+        - name: http
+          containerPort: 80
